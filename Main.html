@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ragnarok Online M Refine Simulator</title>
+
+		<!-- Imported javascript file(s) -->
+		<!-- Graph.js library -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script> -->
+		<script src="js/package/dist/chart.umd.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/helpers.js"></script> -->
+
+		<!-- Zoom plugins for pinch gesture and scroll wheel respectively -->
+		<script src="js/hammer.min.js"></script>
+		<script src="js/chartjs-plugin-zoom.min.js"></script>
+		
+		<!-- Custom javascript file(s) -->
+		<script type="text/javascript" src='js/scripts.js'></script>
+
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	
+	<body onload="initializeValues();">
+	<h1 align="center">
+    	Ragnarok Online M Refine Simulator
+    </h1>
+		<div class="panelContainer">
+			<div id="leftPanel" class="panels">
+				
+				
+				<form>
+				<!-- <input type="checkbox" id="safeRefine" class="checkboxes" name="safeRefine" checked> -->
+					
+		  			
+					<div>
+						<!-- <h1 id="refineNumber" class="refineNumber" align="center" >+0</h1> -->
+						<h1 id="refineNumber" class="refineNumber" align="center" >+0</h1>
+						<label for="safeRefineLimit" class="selectableSafeLimit">🧷🔨🛑:</label>
+						<select name="safeRefineLimit" id="safeRefineLimit">
+						    <option value="4">+4</option>
+						    <option value="5">+5</option>
+						    <option value="6">+6</option>
+						    <option value="7">+7</option>
+						    <option value="8">+8</option>
+						    <option value="9">+9</option>
+						    <option value="10">+10</option>
+						    <option value="11">+11</option>
+						    <option value="12">+12</option>
+						    <option value="13">+13</option>
+						    <option value="14">+14</option>
+						    <option value="15">+15</option>
+					  	</select>
+						<label for="stopwatch" class="stopwatchChar" id="">⏳:</label>
+						<input type="text" disabled="true" id="stopwatch" class="stopwatchValue" value="0.10" size="1"><br>
+					
+						<input type="range" min="1" max="100" value="91" class="slider" id="refineSpeedSlider"><br>
+						<input type="button" id="startButton" value="Start">
+						<input type="button" id="pauseButton" disabled="true" value="Pause">
+						<!-- <input type="button" id="stopButton" value="Stop"> -->
+						<input type="button" id="resetButton" disabled="true" value="Reset">
+					</div>
+
+					<div id="infoLeft" class="info">
+						<h3 align="left">
+						    <label class="ratesChar">🎲🎲🎲</label><br>
+						    100%: 1-4🔨;💥>9<br>
+					  		50%:  5-6🔨;💥<10<br>
+						    40%:   >6🔨
+						</h3>
+					</div>
+
+					<!-- <div id="infoRight" class="info">
+						<h3 align="right">
+						  	<label class="discountsChar">🤑🤑🤑</label><br>
+						  	<input type="radio" id="none" name="discounts" value="None">
+			  				<label for="none" >🚫</label><br>
+			  				<input type="radio" id="home5" name="discounts" value="Home">
+			  				<label for="home5">🏠(-5% z)</label><br>
+			  				<input type="radio" id="refineEvent20" name="discounts" value="refineEvent">
+			  				<label for="refineEvent20">🎊(-20%💎⚙️z)</label>
+		  				</h3>
+		  			</div> -->
+				</form>
+			</div>
+			
+			<div id="rightPanel" class="panels">
+				<!-- <h2>
+					placeholder
+				</h2> -->
+				<!-- <textarea readonly id="textLogs" class="textLogs" placeholder="Text Logs"></textarea> -->
+				<input type="text" disabled="true" id="bonksBox" class="statBox" placeholder="🔨"><br>
+				<!-- <h2 id="bonksBox" class="statBox">Bonks</h2> -->
+					<!-- </div> -->
+					<!-- <div class="tooltip"> -->
+				<input type="text" disabled="true" id="oresBox" class="statBox" placeholder="💎"><br>
+				<!-- <h2 id="oresBox" class="statBox">Ores used</h2> -->
+					<!-- </div> -->
+					<!-- <div class="tooltip"> -->
+				<input type="text" disabled="true" id="zenyBox" class="statBox" placeholder="z"><br>
+				<!-- <h2 id="zenyBox" class="statBox">Zeny used</h2> -->
+					<!-- </div> -->
+					<!-- <div class="tooltip"> -->
+				<input type="text" disabled="true" id="xtraBox" class="statBox" placeholder="⚙️🩹"><br>
+				<!-- <h2 id="xtraBox" class="statBox">Spares used</h2> -->
+					<!-- </div>
+					<div class="tooltip"> -->
+				<input type="text" disabled="true" id="breaksBox" class="statBox" placeholder="💥💔">
+				<!-- <h2 id="breaksBox" class="statBox">Breaks</h2> -->
+			</div>
+			<div id="lineGraph" class="panels">
+				<canvas id="refineChart"></canvas>
+			</div>
+		</div>
+		<br>
+		
+	
+	</body>
+	<footer align="center"><i>Created by VorpalPiranha</i> (work in progress, layout & functionality subject to change)</footer>
+</html>
