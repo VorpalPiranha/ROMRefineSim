@@ -1,2 +1,2 @@
-# ROMRefineSim
-Bonk without paying the ripoff artist Hollgrehenn
+gem "github-pages", "=228"
+gem "jekyll", "=3.9.3"
