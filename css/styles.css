@@ -1,0 +1,108 @@
+body {
+	background-color: grey;
+	height: 80vh;
+/*	width: 80vw;*/
+	margin-left: 5%;
+	margin-right: 5%;
+	font-family: consolas;
+}
+
+.panelContainer {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 10px;
+	background-color: dodgerblue;
+	padding: 10px;
+	border-radius: 25px;
+}
+
+div.panels{
+	background-color: #f1f1f1;
+	color:#000;
+	padding: 10px;
+	/*font-size: 30px;*/
+	text-align: center;
+	border-radius: 25px;
+}
+
+#leftPanel {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.info {
+	width: 50%;
+	float: left;
+	/*text-align: left;*/
+}
+
+#rightPanel {
+	grid-column: 2;
+}
+#lineGraph {
+	grid-column: 1 / span 2;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.refineNumber {
+	/*width: 20%;*/
+	/*height: 98%;*/
+	vertical-align: bottom;
+	/*text-align: center;*/
+	/*font-size: 100%;*/
+/* check font-size responsivess with window size change	*/
+padding: 0px;
+border: 0px;
+/*margin: 0px;*/
+}
+
+/*h3 {
+	
+}*/
+
+.checkboxes {
+/*	transform: scale(1.3);*/
+/*	vertical-align: bottom;*/
+}
+
+.slider {
+	width: 85%;
+}
+
+#startButton, #pauseButton, /*#stopButton, */#resetButton {
+	width: 40%;
+	margin: 1px;
+	border-radius: 8px;
+}
+
+.statBox {
+	text-align: center;
+	font-size: 14pt;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.stopwatchChar, .selectableSafeLimit, .ratesChar, .discountsChar, #safeRefineLimit {
+	font-size: 140%;
+}
+
+.stopwatchValue {
+	font-size: 140%;
+	align-content: center;
+	border-radius: 8px;
+}
+
+
+.graphBox {
+	grid-column-end: span 2;
+}
+
+#refineChart {
+	width:100%;
+	height: 50%;
+}
