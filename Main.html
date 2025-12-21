@@ -34,7 +34,11 @@
 					<div>
 						<!-- <h1 id="refineNumber" class="refineNumber" align="center" >+0</h1> -->
 						<h1 id="refineNumber" class="refineNumber" align="center" >+0</h1>
-						<label for="safeRefineLimit" class="selectableSafeLimit" title="Safe (🧷) refine (🔨) limit (🛑).">🧷🔨🛑:</label>
+						<!--  selectableSafeLimit-->
+						<label for="safeRefineLimit" class="leftPanelSymbols" data-custom-title="-Safe (🧷) refine (🔨) limit (🛑).">🧷🔨🛑:</label>
+						<!-- This span is used to display the custom tooltip for the icon bar listed directly above here -->
+						<span class="leftPanelTooltips"></span>
+
 						<select name="safeRefineLimit" id="safeRefineLimit">
 						    <option value="4">+4</option>
 						    <option value="5" id="safeCost">+5</option>
@@ -49,10 +53,19 @@
 						    <option value="14" id="safeCost">+14</option>
 						    <option value="15" id="safeCost">+15</option>
 					  	</select>
-						<label for="stopwatch" class="stopwatchChar" title="Delay between each refine in seconds (⏳).">⏳:</label>
+
+					  	<!--  stopwatchChar-->
+						<label for="stopwatch" class="leftPanelSymbols" data-custom-title="-Delay between each refine in seconds (⏳).">⏳:</label>
+						<!-- This span is used to display the custom tooltip for the icon bar listed directly above here -->
+						<span class="leftPanelTooltips"></span>
+
 						<input type="text" disabled="true" id="stopwatch" class="stopwatchValue" value="0.10" size="1"><br>
 					
-						<input type="range" min="1" max="100" value="91" class="slider" id="refineSpeedSlider"><br>
+						<input type="range" min="1" max="100" value="91" class="leftPanelSymbols" id="refineSpeedSlider" data-custom-title="Adjust (⏳).">
+						<!-- This span is used to display the custom tooltip for the icon bar listed directly above here -->
+						<span class="leftPanelTooltips"></span>
+						<br>
+						
 						<input type="button" id="startButton" value="Start">
 						<input type="button" id="pauseButton" disabled="true" value="Pause">
 						<!-- <input type="button" id="stopButton" value="Stop"> -->
@@ -61,10 +74,14 @@
 
 					<div id="infoLeft" class="info">
 						<h3 align="left">
-						    <span class="ratesChar" title="Success rates: Refine (🔨); Break (💥)">🎲🎲🎲</span><br>
-						    100%: 1-4🔨;💥>9<br>
-					  		50%:  5-6🔨;💥<10<br>
-						    40%:   >6🔨
+							<!-- ratesChar -->
+						    <span class="leftPanelSymbols" id="ratesChar" data-custom-title="-Success rates: Refine (🔨); Break (💥)">🎲🎲🎲</span>
+						    <!-- This span is used to display the custom tooltip for the icon listed directly above here -->
+							<span class="leftPanelTooltips" id="successRates"></span>
+							<br>
+						    <span>100%: 1-4🔨;💥>9</span><br>
+					  		<span>50%:  5-6🔨;💥<10</span><br>
+						    <span>40%:   >6🔨</span>
 						</h3>
 					</div>
 
@@ -87,29 +104,48 @@
 					<!-- <h2>
 						placeholder
 					</h2> -->
-					<!-- <textarea readonly id="textLogs" class="textLogs" placeholder="Text Logs"></textarea> -->
-					<input type="text" disabled="true" id="bonksBox" class="statBox" step="1" placeholder="🔨" title="Total # of BONKs (🔨) needed to get to +15"><br>
-					<!-- <h2 id="bonksBox" class="statBox">Bonks</h2> -->
-						<!-- </div> -->
-						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="oresBox" class="statBox" step="1" placeholder="💎" title="Total # of ores (💎) used to refine. Enriched ores are counted as 5 normal ores.">
-						<!-- <span class="tooltiptext">Some tooltip text</span> -->
+					<!-- "data-*" is the HTML5 compliant way to name custom attributes within the tags. 
+						 Access the custom attributes in Javascript by typing 
+						 document.getElementById("elementId").dataset.customAttributeName-->
+					<input type="text" disabled="true" id="bonksBox" class="statBox" step="1" placeholder="🔨" data-custom-title="-Total # of BONKs (🔨) needed 
+ to get to +15.
+-(🧷) Denotes safe cost.">
+
+					<!-- This span is used to display the custom tooltip for the stat bar listed directly above here -->
+					<span class="statboxTooltips"></span><br>
+					
+
+					<input type="text" disabled="true" id="oresBox" class="statBox" step="1" placeholder="💎" data-custom-title="-Total # of ores (💎) used 
+ to refine.
+-Enriched ores are counted 
+ as 5 normal ores.
+-(🧷) Denotes safe cost.">
+					<!-- This span is used to display the custom tooltip for the stat bar listed directly above here -->
+					<span class="statboxTooltips"></span>
 					<br>
-					<!-- <h2 id="oresBox" class="statBox">Ores used</h2> -->
-						<!-- </div> -->
-						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="zenyBox" class="statBox" step="1" placeholder="z" title="Total zeny (z) used to make one +15 equipment."><br>
-					<!-- <h2 id="zenyBox" class="statBox">Zeny used</h2> -->
-						<!-- </div> -->
-						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="xtraBox" class="statBox" step="1" placeholder="⚙️🩹" title="Spare GEARs (⚙️) used for safe refines and/or repairs (🩹)."><br>
-					<!-- <h2 id="xtraBox" class="statBox">Spares used</h2> -->
-						<!-- </div>
-						<div class="tooltip"> -->
-					<input type="text" disabled="true" id="breaksBox" class="statBox" step="1" placeholder="💥💔" title="Total # of broken gears(💥)....and hearts.😭">
+					
+
+					<input type="text" disabled="true" id="zenyBox" class="statBox" step="1" placeholder="z" data-custom-title="-Total zeny (z) used to 
+ make one +15 equipment.
+-(🧷) Denotes safe cost.">
+					<!-- This span is used to display the custom tooltip for the stat bar listed directly above here -->
+					<span class="statboxTooltips"></span>
+					<br>
+					
+
+					<input type="text" disabled="true" id="xtraBox" class="statBox" step="1" placeholder="⚙️🩹" data-custom-title="-Spare GEARs (⚙️) used for safe
+ refines and/or repairs (🩹).
+-(🧷) Denotes safe cost.">
+					<!-- This span is used to display the custom tooltip for the stat bar listed directly above here -->
+					<span class="statboxTooltips"></span><br>
+
+					
+					<input type="text" disabled="true" id="breaksBox" class="statBox" step="1" placeholder="💥💔" data-custom-title="-Total # of broken gears(💥)
+ ....and hearts(💔).😭">
+					<!-- This span is used to display the custom tooltip for the stat bar listed directly above here -->
+					<span class="statboxTooltips"></span>
+
 				</form>
-				<!-- <br><br> -->
-				<!-- <h2 id="breaksBox" class="statBox">Breaks</h2> -->
 
 				<!-- tracker added from https://hitscounter.dev/ -->
 				<a href="https://hitscounter.dev/">

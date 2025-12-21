@@ -60,17 +60,12 @@ border: 0px;
 /*margin: 0px;*/
 }
 
-#safeCost {
-	/*display: none;*/
-	/*visibility: hidden;*/
-}
-
 .checkboxes {
 /*	transform: scale(1.3);*/
 /*	vertical-align: bottom;*/
 }
 
-.slider {
+#refineSpeedSlider {
 	width: 85%;
 }
 
@@ -95,19 +90,19 @@ border: 0px;
   transition: background-position 0.1s linear;
 }
 
-.stopwatchChar, .selectableSafeLimit, .ratesChar, .discountsChar, #safeRefineLimit {
+.leftPanelSymbols, .discountsChar, #safeRefineLimit {
 	font-size: 140%;
 }
 
-.ratesChar.hover {
-
+/*change the cursor to arrow from the text highlight symbol*/
+#ratesChar{
+	cursor: default;
 }
 
 .stopwatchValue {
 	font-size: 140%;
 	align-content: center;
 	border-radius: 8px;
-
 }
 
 
@@ -120,39 +115,39 @@ border: 0px;
 	height: 50%;
 }
 
+.statboxTooltips, .leftPanelTooltips {
 
+/*	https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/white-space
 
+	Sequences of white space are preserved. Lines are only broken at NEWLINE CHARACTERS 
+	IN THE SOURCE and at <br> elements. Equivalent to preserve nowrap.*/
+	white-space: pre;
 
-/*on-hover tooltips for clarity*/
-.statBox[data-customTitle] {
-	transition: display 0.5s ease-in-out;
+	visibility: hidden;
+	opacity: 0;
+	background-color: black;
+	color: white;
+	text-align: left;
+	border-radius: 6px;
+	padding: 5px;
+	padding-top: 3px;
+	position: absolute;
+	
+	z-index: 1000;
+	/* property | duration | timing-function | delay */
+	transition: opacity 0.3s ease-in 1s, visibility 0.3s ease-in 1s;
 }
 
-/*#oresBox {
-  cursor: help;
+.statboxTooltips{
+	transform: translate(-105%, -105%);
 }
 
-.tooltiptext {
-  opacity: 0;
-  width: 130px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 6px;
-  padding: 5px 0;
-  z-index: 1;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
+.leftPanelTooltips{
+	transform: translateY(-50%);
 }
 
-#oresBox:hover .tooltiptext {
-  opacity: 1;
+/*override the inherited values from h3 to match all others, this is a band-aid fix*/
+#successRates{
+	font-size: 16px;
+	font-weight: normal;
 }
-
-#oresBox:hover:after .tooltiptext {
-  opacity: 0;
-}*/

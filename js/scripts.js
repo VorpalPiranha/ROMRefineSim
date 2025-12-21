@@ -31,15 +31,10 @@ function initializeValues(){
 	//possible clue:
 	//document.getElementById("safeRefineLimit").children[0].value
 
-	//https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
-	//NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
-	// document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
-	// document.getElementById("safeCost").addEventListener("focus", showSafeCost);
-
-
-
-
-
+	// NEW ABILITY FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
+	// https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+	 customTooltipDisplayFactory(document.getElementsByClassName("statBox"));
+	 customTooltipDisplayFactory(document.getElementsByClassName("leftPanelSymbols"));
 
 
 	//IDEA
@@ -65,6 +60,7 @@ function initializeValues(){
 	//thisPointOresCount = thisPointOresCount*0.2 //this needs to be rounded to the nearest decimal
 	//thisPointZenyCount = thisPointZenyCost*0.2
 	//thisPointXtraCount = thisPointXtraCount*0.2 //this needs to be rounded to the nearest decimal
+
 	createGraph();
 	tutorialPoint();
 }
@@ -142,6 +138,7 @@ function clickReset() {
 	yGraph = [0];
 	dataColors = [0];
 	dataPointTooltips = [[]];
+	tutorialPoint();
 
 	//Check if there is a graph before resetting, then
 	//pass the id of the canvas html element if there is
@@ -150,7 +147,6 @@ function clickReset() {
 	//}
 	createGraph();
 	refineSpeed();
-	tutorialPoint();
 }
 
 // function colorTest(){
@@ -356,9 +352,45 @@ function revertStatBars(){
 		updateStatTotals();
 }
 
+function customTooltipDisplayFactory(collection){
+	//add an event listener(s) for every HTML element with a matching class name in the collection passed
+	//and assign functions for each event accordingly
+	for(let i = 0; i < collection.length; i++){
+		collection[i].addEventListener("mouseenter", showCustomTooltip);
+		collection[i].addEventListener("mouseleave", hideCustomTooltip);
+		collection[i].addEventListener("mousemove", mobileTooltip);
+	}
+	
+}
+
 function showCustomTooltip(){
 	// console.log("testing");
-	console.log(document.getElementById("bonksBox").dataset);
+	//console.log(this.dataset.customTitle);
+
+	//change the adjacent element's content, visibility, and opacity
+	//in the HTML to the custom tooltip stored in the <input> tag of
+	//the stat bar the user hovers their cursor over.
+	this.nextElementSibling.textContent = this.dataset.customTitle;
+	this.nextElementSibling.style.visibility = "visible";
+	this.nextElementSibling.style.opacity = 1;
+	this.nextElementSibling.style.transitionDelay = "1s";
+}
+
+function hideCustomTooltip(){
+	//visibility and opacity are set to transition on a 0.3s delay in css.
+	this.nextElementSibling.style.visibility = "hidden";
+	this.nextElementSibling.style.opacity = 0;
+	this.nextElementSibling.style.transitionDelay = "0s";
+}
+
+//The "event" parameter here is the event type being used in the
+//addEventListener function call inside customTooltipDisplayFactory 
+//to assign this method to the "mousemove" event.
+//https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+function mobileTooltip(event){
+	//positions the tooltip relative to the user's cursor, can fine tune as needed
+	this.nextElementSibling.style.top = (event.clientY + 10) + "px";
+	this.nextElementSibling.style.left = (event.clientX + 10) + "px";
 }
 
 function updateRefine(num) {
