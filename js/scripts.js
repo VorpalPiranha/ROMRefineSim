@@ -31,12 +31,12 @@ function initializeValues(){
 	//possible clue:
 	//document.getElementById("safeRefineLimit").children[0].value
 
-	//https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
-	//NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
-	document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
+	// document.getElementByID("oresBox").addEventListener("mouseover", showTooltip);
 	// document.getElementById("safeCost").addEventListener("focus", showSafeCost);
 
-
+	// https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+	// NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
+	// document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
 
 
 
@@ -353,11 +353,6 @@ function revertStatBars(){
 		document.getElementById("rightPanelStats").reset();
 	else
 		updateStatTotals();
-}
-
-function showCustomTooltip(){
-	// console.log("testing");
-	console.log(document.getElementById("bonksBox").dataset);
 }
 
 function updateRefine(num) {

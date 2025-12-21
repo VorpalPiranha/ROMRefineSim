@@ -62,9 +62,9 @@
 					<div id="infoLeft" class="info">
 						<h3 align="left">
 						    <span class="ratesChar" title="Success rates: Refine (🔨); Break (💥)">🎲🎲🎲</span><br>
-						    <span>100%: 1-4🔨;💥>9</span><br>
-					  		<span>50%:  5-6🔨;💥<10</span><br>
-						    <span>40%:   >6🔨</span>
+						    100%: 1-4🔨;💥>9<br>
+					  		50%:  5-6🔨;💥<10<br>
+						    40%:   >6🔨
 						</h3>
 					</div>
 
@@ -87,41 +87,34 @@
 					<!-- <h2>
 						placeholder
 					</h2> -->
-					<!-- "data-*" is the HTML5 compliant way to name custom attributes within the tags. 
-						 Access the custom attributes in Javascript by typing 
-						 document.getElementById("elementId").dataset.customAttributeName-->
-					<input type="text" disabled="true" id="bonksBox" class="statBox" step="1" placeholder="🔨" data-customTitle="-Total # of BONKs (🔨) needed to get to +15.
--(🧷) Denotes safe cost."><br>
+					<!-- <textarea readonly id="textLogs" class="textLogs" placeholder="Text Logs"></textarea> -->
+					<input type="text" disabled="true" id="bonksBox" class="statBox" step="1" placeholder="🔨" title="Total # of BONKs (🔨) needed to get to +15"><br>
 					<!-- <h2 id="bonksBox" class="statBox">Bonks</h2> -->
 						<!-- </div> -->
 						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="oresBox" class="statBox" step="1" placeholder="💎" data-customTitle="-Total # of ores (💎) used to refine. 
--Enriched ores are counted as 5 normal ores.
--(🧷) Denotes safe cost.">
+					<input type="text" disabled="true" id="oresBox" class="statBox" step="1" placeholder="💎" title="Total # of ores (💎) used to refine. Enriched ores are counted as 5 normal ores.">
 						<!-- <span class="tooltiptext">Some tooltip text</span> -->
 					<br>
 					<!-- <h2 id="oresBox" class="statBox">Ores used</h2> -->
 						<!-- </div> -->
 						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="zenyBox" class="statBox" step="1" placeholder="z" data-customTitle="-Total zeny (z) used to make one +15 equipment.
--(🧷) Denotes safe cost."><br>
+					<input type="text" disabled="true" id="zenyBox" class="statBox" step="1" placeholder="z" title="Total zeny (z) used to make one +15 equipment."><br>
 					<!-- <h2 id="zenyBox" class="statBox">Zeny used</h2> -->
 						<!-- </div> -->
 						<!-- <div class="tooltip"> -->
-					<input type="text" disabled="true" id="xtraBox" class="statBox" step="1" placeholder="⚙️🩹" data-customTitle="Spare GEARs (⚙️) used for safe refines and/or repairs (🩹).
--(🧷) Denotes safe cost."><br>
+					<input type="text" disabled="true" id="xtraBox" class="statBox" step="1" placeholder="⚙️🩹" title="Spare GEARs (⚙️) used for safe refines and/or repairs (🩹)."><br>
 					<!-- <h2 id="xtraBox" class="statBox">Spares used</h2> -->
 						<!-- </div>
 						<div class="tooltip"> -->
-					<input type="text" disabled="true" id="breaksBox" class="statBox" step="1" placeholder="💥💔" data-customTitle="-Total # of broken gears(💥)....and hearts.😭">
+					<input type="text" disabled="true" id="breaksBox" class="statBox" step="1" placeholder="💥💔" title="Total # of broken gears(💥)....and hearts.😭">
 				</form>
 				<!-- <br><br> -->
 				<!-- <h2 id="breaksBox" class="statBox">Breaks</h2> -->
 
 				<!-- tracker added from https://hitscounter.dev/ -->
-				<!-- <a href="https://hitscounter.dev/">
+				<a href="https://hitscounter.dev/">
 					<img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fvorpalpiranha.github.io%2FROMRefineSim%2FMain.html&label=&icon=eye&color=%231e90ff&message=&style=for-the-badge&tz=US%2FPacific">
-				</a> -->
+				</a>
 			</div>
 			<div id="lineGraph" class="panels">
 				<canvas id="refineChart"></canvas>
