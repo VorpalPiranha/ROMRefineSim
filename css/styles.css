@@ -60,9 +60,10 @@ border: 0px;
 /*margin: 0px;*/
 }
 
-/*h3 {
-	
-}*/
+#safeCost {
+	/*display: none;*/
+	/*visibility: hidden;*/
+}
 
 .checkboxes {
 /*	transform: scale(1.3);*/
@@ -85,16 +86,28 @@ border: 0px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
+	/*transition: background-color 0.5s ease-in;*/
+
+	background-image: linear-gradient(to right, #00FF00 50%, #F1F1F1 50%);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  background-position: right 2px bottom; /* Start with the default color showing */
+  transition: background-position 0.1s linear;
 }
 
 .stopwatchChar, .selectableSafeLimit, .ratesChar, .discountsChar, #safeRefineLimit {
 	font-size: 140%;
 }
 
+.ratesChar.hover {
+
+}
+
 .stopwatchValue {
 	font-size: 140%;
 	align-content: center;
 	border-radius: 8px;
+
 }
 
 
@@ -106,3 +119,40 @@ border: 0px;
 	width:100%;
 	height: 50%;
 }
+
+
+
+
+/*on-hover tooltips for clarity*/
+.statBox[data-customTitle] {
+	transition: display 0.5s ease-in-out;
+}
+
+/*#oresBox {
+  cursor: help;
+}
+
+.tooltiptext {
+  opacity: 0;
+  width: 130px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  padding: 5px 0;
+  z-index: 1;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#oresBox:hover .tooltiptext {
+  opacity: 1;
+}
+
+#oresBox:hover:after .tooltiptext {
+  opacity: 0;
+}*/

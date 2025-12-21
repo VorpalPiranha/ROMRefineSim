@@ -26,6 +26,45 @@ function initializeValues(){
 	//listener for reset button
 	document.getElementById("resetButton").addEventListener("click", clickReset);
 	// count + "<br>";
+	//listener for showing the safe refine costs in the stats window
+	document.getElementById("safeRefineLimit").addEventListener("change", showSafeCost);
+	//possible clue:
+	//document.getElementById("safeRefineLimit").children[0].value
+
+	//https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+	//NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
+	document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
+	// document.getElementById("safeCost").addEventListener("focus", showSafeCost);
+
+
+
+
+
+
+
+	//IDEA
+	//on-hover in safe refine dropdown, show the cost in a tooltip
+
+
+	//IDEA
+	//click points to cycle between no/home(5% z)/event(50% z non-safe & 20% safe on all mats) discounts
+	//need a new listener for this
+
+	//-5% z home discount math
+	//zenyCount = zenyCount - thisPointZenyCost*0.05
+	//thisPointZenyCount = thisPointZenyCost*0.05
+
+	//-50% z non-safe discount math
+	//zenyCount = zenyCount - thisPointZenyCost*0.5
+	//thisPointZenyCount = thisPointZenyCost*0.5
+
+	//-20% safe discount math
+	//oresCount = oresCount - thisPointOresCount*0.2 //this needs to be rounded to the nearest decimal
+	//zenyCount = zenyCount - thisPointZenyCost*0.2
+	//xtraCount = xtraCount - thisPointXtraCount*0.2 //this needs to be rounded to the nearest decimal
+	//thisPointOresCount = thisPointOresCount*0.2 //this needs to be rounded to the nearest decimal
+	//thisPointZenyCount = thisPointZenyCost*0.2
+	//thisPointXtraCount = thisPointXtraCount*0.2 //this needs to be rounded to the nearest decimal
 	createGraph();
 	
 }
@@ -80,20 +119,23 @@ function clickReset() {
 
 	//reset all values
 	document.getElementById("refineNumber").innerHTML = "+0";
-	document.getElementById("startButton").disabled = false;
-	document.getElementById("refineSpeedSlider").disabled = false;
+	document.getElementById("leftPanelInputs").reset();
 	document.getElementById("safeRefineLimit").disabled = false;
+	document.getElementById("refineSpeedSlider").disabled = false;
+	document.getElementById("startButton").disabled = false;
+	
 
 	bonksCount = 0;
 	zenyCount = 0;
 	oresCount = 0;
 	xtraCount = 0;
 	breakCount = 0;
-	document.getElementById("bonksBox").value = "";
-	document.getElementById("oresBox").value = "";
-	document.getElementById("zenyBox").value = "";
-	document.getElementById("xtraBox").value = "";
-	document.getElementById("breaksBox").value = "";
+	// document.getElementById("bonksBox").value = "";
+	// document.getElementById("oresBox").value = "";
+	// document.getElementById("zenyBox").value = "";
+	// document.getElementById("xtraBox").value = "";
+	// document.getElementById("breaksBox").value = "";
+	document.getElementById("rightPanelStats").reset();
 
 	//reset data & destroy graph
 	xGraph = [0];
@@ -231,8 +273,8 @@ function breakGear(chance){
 		dataPointTooltips[bonksCount][4] = "💥💔";
 		dataPointTooltips[bonksCount][5] = "1" + " ⚙️🡲🩹";//maybe use ⚙️ for spare gears?
 	}
-	else
-		console.log("No break.");
+	// else
+	// 	console.log("No break.");
 }
 
 function refineSpeed(){
@@ -248,6 +290,74 @@ function refineSpeed(){
 		Chart.getChart(refineChart).options.animation.duration = 0;
 
 	Chart.getChart(refineChart).update();
+}
+
+function showSafeCost(){
+	//console.log(safeRequiredOres[this.value - 5]);
+
+	try{
+		//display safe cost for 5 seconds, then revert back to current resources spent
+		document.getElementById("bonksBox").value = "1 🔨";
+		document.getElementById("oresBox").value = "🧷" + safeRequiredOres[this.value - 5].toLocaleString() + " 💎";
+		document.getElementById("zenyBox").value = "🧷" + safeRequiredZeny[this.value - 5].toLocaleString() + " z";
+		document.getElementById("xtraBox").value = "🧷" + safeRequiredXtra[this.value - 5].toLocaleString() + " ⚙️";
+	} catch (error) {
+		console.error("+4 has no special safe refine cost.");
+		document.getElementById("bonksBox").value = "4 🔨";
+		document.getElementById("oresBox").value = "4 💎";
+		document.getElementById("zenyBox").value = "100,000 z";
+		document.getElementById("xtraBox").value = "⚙️";
+		document.getElementById("breaksBox").value = "💥💔";
+	} finally {
+		fillStatsBar("left bottom");
+	}
+	
+}
+
+function fillStatsBar(position){
+
+	document.getElementById("bonksBox").style.backgroundPosition = position;
+	document.getElementById("oresBox").style.backgroundPosition = position;
+	document.getElementById("zenyBox").style.backgroundPosition = position;
+	document.getElementById("xtraBox").style.backgroundPosition = position;
+
+	if(position != "right 2px bottom"){
+		//EXTENSIVE READING DONE
+		//READ IT AGAIN
+		//READ IT MORE
+		//READ IT BOY - Kratos
+		//https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout
+		setTimeout(fillStatsBar, 101, "right 2px bottom");
+		setTimeout(drainStatsBar, 100);
+	}
+}
+
+function drainStatsBar(){
+		document.getElementById("bonksBox").style.transition = "background-position 5s ease-out";
+		document.getElementById("oresBox").style.transition = "background-position 5s ease-out";
+		document.getElementById("zenyBox").style.transition = "background-position 5s ease-out";
+		document.getElementById("xtraBox").style.transition = "background-position 5s ease-out";
+		setTimeout(resetStatBarsTransitions, 5000);
+}
+
+function resetStatBarsTransitions(){
+	document.getElementById("bonksBox").style.transition = "background-position 0.1s linear";
+	document.getElementById("oresBox").style.transition = "background-position 0.1s linear";
+	document.getElementById("zenyBox").style.transition = "background-position 0.1s linear";
+	document.getElementById("xtraBox").style.transition = "background-position 0.1s linear";
+	revertStatBars();
+}
+
+function revertStatBars(){
+	if(bonksCount == 0)
+		document.getElementById("rightPanelStats").reset();
+	else
+		updateStatTotals();
+}
+
+function showCustomTooltip(){
+	// console.log("testing");
+	console.log(document.getElementById("bonksBox").dataset);
 }
 
 function updateRefine(num) {
@@ -401,7 +511,7 @@ function createGraph(){
 	  		//default value to start based on 0.10 second delay between refines
         duration: 100,
         //animation type
-        easing: 'easeInOutExpo',
+        //easing: 'easeInOutExpo',
     },
 	    responsive: true,
 	    maintainAspectRatio: false,

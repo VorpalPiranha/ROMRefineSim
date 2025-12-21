@@ -27,29 +27,29 @@
 			<div id="leftPanel" class="panels">
 				
 				
-				<form>
+				<form id="leftPanelInputs">
 				<!-- <input type="checkbox" id="safeRefine" class="checkboxes" name="safeRefine" checked> -->
 					
 		  			
 					<div>
 						<!-- <h1 id="refineNumber" class="refineNumber" align="center" >+0</h1> -->
 						<h1 id="refineNumber" class="refineNumber" align="center" >+0</h1>
-						<label for="safeRefineLimit" class="selectableSafeLimit">🧷🔨🛑:</label>
+						<label for="safeRefineLimit" class="selectableSafeLimit" title="Safe (🧷) refine (🔨) limit (🛑).">🧷🔨🛑:</label>
 						<select name="safeRefineLimit" id="safeRefineLimit">
 						    <option value="4">+4</option>
-						    <option value="5">+5</option>
-						    <option value="6">+6</option>
-						    <option value="7">+7</option>
-						    <option value="8">+8</option>
-						    <option value="9">+9</option>
-						    <option value="10">+10</option>
-						    <option value="11">+11</option>
-						    <option value="12">+12</option>
-						    <option value="13">+13</option>
-						    <option value="14">+14</option>
-						    <option value="15">+15</option>
+						    <option value="5" id="safeCost">+5</option>
+						    <option value="6" id="safeCost">+6</option>
+						    <option value="7" id="safeCost">+7</option>
+						    <option value="8" id="safeCost">+8</option>
+						    <option value="9" id="safeCost">+9</option>
+						    <option value="10" id="safeCost">+10</option>
+						    <option value="11" id="safeCost">+11</option>
+						    <option value="12" id="safeCost">+12</option>
+						    <option value="13" id="safeCost">+13</option>
+						    <option value="14" id="safeCost">+14</option>
+						    <option value="15" id="safeCost">+15</option>
 					  	</select>
-						<label for="stopwatch" class="stopwatchChar" id="">⏳:</label>
+						<label for="stopwatch" class="stopwatchChar" title="Delay between each refine in seconds (⏳).">⏳:</label>
 						<input type="text" disabled="true" id="stopwatch" class="stopwatchValue" value="0.10" size="1"><br>
 					
 						<input type="range" min="1" max="100" value="91" class="slider" id="refineSpeedSlider"><br>
@@ -61,10 +61,10 @@
 
 					<div id="infoLeft" class="info">
 						<h3 align="left">
-						    <label class="ratesChar">🎲🎲🎲</label><br>
-						    100%: 1-4🔨;💥>9<br>
-					  		50%:  5-6🔨;💥<10<br>
-						    40%:   >6🔨
+						    <span class="ratesChar" title="Success rates: Refine (🔨); Break (💥)">🎲🎲🎲</span><br>
+						    <span>100%: 1-4🔨;💥>9</span><br>
+					  		<span>50%:  5-6🔨;💥<10</span><br>
+						    <span>40%:   >6🔨</span>
 						</h3>
 					</div>
 
@@ -83,33 +83,45 @@
 			</div>
 			
 			<div id="rightPanel" class="panels">
-				<!-- <h2>
-					placeholder
-				</h2> -->
-				<!-- <textarea readonly id="textLogs" class="textLogs" placeholder="Text Logs"></textarea> -->
-				<input type="text" disabled="true" id="bonksBox" class="statBox" placeholder="🔨"><br>
-				<!-- <h2 id="bonksBox" class="statBox">Bonks</h2> -->
-					<!-- </div> -->
-					<!-- <div class="tooltip"> -->
-				<input type="text" disabled="true" id="oresBox" class="statBox" placeholder="💎"><br>
-				<!-- <h2 id="oresBox" class="statBox">Ores used</h2> -->
-					<!-- </div> -->
-					<!-- <div class="tooltip"> -->
-				<input type="text" disabled="true" id="zenyBox" class="statBox" placeholder="z"><br>
-				<!-- <h2 id="zenyBox" class="statBox">Zeny used</h2> -->
-					<!-- </div> -->
-					<!-- <div class="tooltip"> -->
-				<input type="text" disabled="true" id="xtraBox" class="statBox" placeholder="⚙️🩹"><br>
-				<!-- <h2 id="xtraBox" class="statBox">Spares used</h2> -->
-					<!-- </div>
-					<div class="tooltip"> -->
-				<input type="text" disabled="true" id="breaksBox" class="statBox" placeholder="💥💔"><br><br>
+				<form id="rightPanelStats">
+					<!-- <h2>
+						placeholder
+					</h2> -->
+					<!-- "data-*" is the HTML5 compliant way to name custom attributes within the tags. 
+						 Access the custom attributes in Javascript by typing 
+						 document.getElementById("elementId").dataset.customAttributeName-->
+					<input type="text" disabled="true" id="bonksBox" class="statBox" step="1" placeholder="🔨" data-customTitle="-Total # of BONKs (🔨) needed to get to +15.
+-(🧷) Denotes safe cost."><br>
+					<!-- <h2 id="bonksBox" class="statBox">Bonks</h2> -->
+						<!-- </div> -->
+						<!-- <div class="tooltip"> -->
+					<input type="text" disabled="true" id="oresBox" class="statBox" step="1" placeholder="💎" data-customTitle="-Total # of ores (💎) used to refine. 
+-Enriched ores are counted as 5 normal ores.
+-(🧷) Denotes safe cost.">
+						<!-- <span class="tooltiptext">Some tooltip text</span> -->
+					<br>
+					<!-- <h2 id="oresBox" class="statBox">Ores used</h2> -->
+						<!-- </div> -->
+						<!-- <div class="tooltip"> -->
+					<input type="text" disabled="true" id="zenyBox" class="statBox" step="1" placeholder="z" data-customTitle="-Total zeny (z) used to make one +15 equipment.
+-(🧷) Denotes safe cost."><br>
+					<!-- <h2 id="zenyBox" class="statBox">Zeny used</h2> -->
+						<!-- </div> -->
+						<!-- <div class="tooltip"> -->
+					<input type="text" disabled="true" id="xtraBox" class="statBox" step="1" placeholder="⚙️🩹" data-customTitle="Spare GEARs (⚙️) used for safe refines and/or repairs (🩹).
+-(🧷) Denotes safe cost."><br>
+					<!-- <h2 id="xtraBox" class="statBox">Spares used</h2> -->
+						<!-- </div>
+						<div class="tooltip"> -->
+					<input type="text" disabled="true" id="breaksBox" class="statBox" step="1" placeholder="💥💔" data-customTitle="-Total # of broken gears(💥)....and hearts.😭">
+				</form>
+				<!-- <br><br> -->
 				<!-- <h2 id="breaksBox" class="statBox">Breaks</h2> -->
 
 				<!-- tracker added from https://hitscounter.dev/ -->
-				<a href="https://hitscounter.dev/">
+				<!-- <a href="https://hitscounter.dev/">
 					<img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fvorpalpiranha.github.io%2FROMRefineSim%2FMain.html&label=&icon=eye&color=%231e90ff&message=&style=for-the-badge&tz=US%2FPacific">
-				</a>
+				</a> -->
 			</div>
 			<div id="lineGraph" class="panels">
 				<canvas id="refineChart"></canvas>
