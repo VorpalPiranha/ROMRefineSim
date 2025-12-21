@@ -31,12 +31,12 @@ function initializeValues(){
 	//possible clue:
 	//document.getElementById("safeRefineLimit").children[0].value
 
-	// document.getElementByID("oresBox").addEventListener("mouseover", showTooltip);
+	//https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+	//NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
+	// document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
 	// document.getElementById("safeCost").addEventListener("focus", showSafeCost);
 
-	// https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
-	// NEW ABILITY EXPLOIT FOUND, REFACTOR POTENTIAL FOR A LOT OF THINGS.
-	// document.getElementsByClassName("statBox").addEventListener("mouseover", showCustomTooltip);
+
 
 
 
@@ -66,7 +66,7 @@ function initializeValues(){
 	//thisPointZenyCount = thisPointZenyCost*0.2
 	//thisPointXtraCount = thisPointXtraCount*0.2 //this needs to be rounded to the nearest decimal
 	createGraph();
-	
+	tutorialPoint();
 }
 
 //test function for clicking start button
@@ -150,6 +150,7 @@ function clickReset() {
 	//}
 	createGraph();
 	refineSpeed();
+	tutorialPoint();
 }
 
 // function colorTest(){
@@ -355,6 +356,11 @@ function revertStatBars(){
 		updateStatTotals();
 }
 
+function showCustomTooltip(){
+	// console.log("testing");
+	console.log(document.getElementById("bonksBox").dataset);
+}
+
 function updateRefine(num) {
 	document.getElementById("refineNumber").innerHTML = "+" + (getCurrentRefine() + num);
 }
@@ -472,6 +478,15 @@ function updateStatTotals(){
 	document.getElementById("zenyBox").value = zenyCount.toLocaleString() + " z";
 	document.getElementById("xtraBox").value = xtraCount.toLocaleString() +  " ⚙️🩹";
 	document.getElementById("breaksBox").value = breakCount.toLocaleString() + " 💥💔";
+}
+
+function tutorialPoint(){
+	dataPointTooltips[bonksCount][0] = "-Scroll to zoom";
+	dataPointTooltips[bonksCount][1] = "-Click & drag";
+	dataPointTooltips[bonksCount][2] = "-Touch enabled";
+
+	//IDEA
+	//pond ripple effect on tutorial point when graph is empty
 }
 
 function createGraph(){
